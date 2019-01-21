@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView recyclerView;
 
     ListNameAdapter listNameAdapter;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,16 +35,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initList();
 
     }
+    
     protected void onResume(){
         super.onResume();
         List nameList = DataManager.getInstance().getNameList();
         listNameAdapter.updateData(nameList);
     }
+    
     private void initViews(){
         buttonNext = findViewById(R.id.activity_main_button_next);
-      //  recyclerView = findViewById(R.id.activity_main_recyclerview);
         buttonNext.setOnClickListener(this);
     }
+    
     private void initList(){
         final LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(this);
@@ -62,12 +65,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-    private void displayFormActivity(){
-        Intent intent= new Intent(this,formActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void clickOnItem(String name) {
         Toast.makeText(this,name, Toast.LENGTH_SHORT).show();
@@ -77,6 +74,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void clickOnCross(String name) {
         Toast.makeText(this,"Clic sur la croix de l'item:"+name,Toast.LENGTH_SHORT).show();
+    }
+    
+    private void displayFormActivity(){
+        Intent intent= new Intent(this,formActivity.class);
+        startActivity(intent);
     }
 
 }
